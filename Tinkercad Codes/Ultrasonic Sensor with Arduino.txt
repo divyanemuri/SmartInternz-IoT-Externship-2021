@@ -1,0 +1,21 @@
+#define echo 7 //echo pin connected to digital pin 7
+#define trig 2 //trigger pin connected to digital pin 2
+void setup()
+{
+  pinMode(echo, INPUT);
+  pinMode(trig, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(trig, LOW);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+  int duration = pulseIn(echo, HIGH);
+  int distance = duration * 0.0343/2;
+  Serial.print("Distance in cm: ");
+  Serial.println(distance);
+  delay(500);
+}
